@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+:root {
+  /* Light Mode - Clean, White + Blue + Purple Accents */
+  --background: #f8faff;                    /* Soft white-blue tint */
+  --foreground: #1a1a2e;                    /* Deep navy text */
+  --primary: #4361ee;                       /* TrueEvents Blue */
+  --primary-light: #5e7bff;                 /* Hover blue */
+  --secondary: #7c3aed;                     /* Purple accent */
+  --secondary-light: #9f7aea;                /* Light purple */
+  --accent: #06b6d4;                        /* Cyan for highlights */
+  --border: #e0e7ff;                        /* Soft border */
+  --card-bg: #ffffff;                       /* Pure white card */
+  --muted: #94a3b8;                         /* Muted text */
+  --success: #10b981;                       /* Green for success */
+  --warning: #f59e0b;                       /* Amber */
+  --danger: #ef4444;                        /* Red */
+  --radius: 0.75rem;                        /* Modern rounded */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: var(--muted);
+  --color-muted-foreground: #64748b;
+  --color-card: var(--card-bg);
+  --color-card-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+  --radius: var(--radius);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Dark Mode - Deep, Cinematic, Purple-Blue Glow */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f1a;                  /* Deep navy black */
+    --foreground: #e0e7ff;                  /* Soft white-blue */
+    --primary: #5e7bff;                     /* Bright blue */
+    --primary-light: #7c9eff;
+    --secondary: #a78bfa;                   /* Soft purple */
+    --secondary-light: #c4b5fd;
+    --accent: #67e8f9;                      /* Bright cyan */
+    --border: #1e293b;                      /* Dark slate border */
+    --card-bg: #1a1a2e;                     /* Dark card */
+    --muted: #94a3b8;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --danger: #f87171;
+  }
+}
+
+/* Global Styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.08) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 20%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 30%);
+  background-attachment: fixed;
+  transition: all 0.3s ease;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
+}
+
+/* Glassmorphism Card */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* Glowing Button */
+.glow-btn {
+  position: relative;
+  overflow: hidden;
+}
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+  z-index: -1;
+}
+.glow-btn:hover::before {
+  opacity: 0.2;
+}
